@@ -59,6 +59,9 @@ function init() {
 
     if (existingMove) {
       if (!store.mute) {
+        if (navigator.vibrate) {
+          navigator.vibrate(500);
+        }
         view.playAudioOnce("not-allowed.mp3");
       }
       view.toggleNotAllowedClass(square);
