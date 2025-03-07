@@ -5,12 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/index.css" />
-    <link rel="icon" href="assets/img/logo.png" />
+    <link rel="icon" href="assets/img/logo-sml.png" />
     <script src="js/fontawesome.js" crossorigin="anonymous"></script>
     <title>Tic-Tac-Toe | Vanilla Js</title>
   </head>
   <body>
-    <div class="margin-top"></div>
     <main>
       <div class="grid" data-id="grid">
         <!-- Turn indicator -->
@@ -43,6 +42,8 @@
         <div id="8" class="square shadow" data-id="square"></div>
         <div id="9" class="square shadow" data-id="square"></div>
 
+        <audio data-id="turn-audio" hidden></audio>
+
         <!-- Scoreboard -->
         <div class="score shadow" style="background-color: var(--turquoise)">
           <p>Player 1</p>
@@ -57,25 +58,11 @@
           <span data-id="p2-wins">0 Wins</span>
         </div>
       </div>
+
+      <div class="audio-control" data-id="audio-control">
+        <i class="fa-solid fa-volume-high" data-id="audio-control-icon"></i>
+      </div>
     </main>
-
-    <footer>
-      <p>
-        Original project by
-        <a href="https://twitter.com/megfdev">@megfdev</a> and
-        <a href="https://twitter.com/Ivan00sto">@Ivan00Sto</a>
-      </p>
-
-      <p>
-        Refactored by
-        <a
-          href="https://zafer-portfolio.netlify.app/"
-          style="color: var(--turquoise)"
-          target="_blank"
-          >@zafer</a
-        >
-      </p>
-    </footer>
 
     <!-- Modal that opens when game ends -->
     <div class="modal hidden" data-id="modal">

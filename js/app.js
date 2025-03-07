@@ -46,6 +46,11 @@ function init() {
     initView();
   });
 
+  view.bindGameAudioControl((event) => {
+    store.toggleAudio();
+    view.toggleAudioIcon(store.mute);
+  });
+
   view.bindPlayerMoveEvent((square) => {
     // Checking if the square is already used
     const existingMove = store.game.moves.find(
@@ -53,7 +58,18 @@ function init() {
     );
 
     if (existingMove) {
+      if (!store.mute) {
+        view.playAudioOnce("not-allowed.mp3");
+      }
+      view.toggleNotAllowedClass(square);
       return;
+    }
+
+    // Play players sound effect
+    if (!store.mute) {
+      view.playAudioOnce(
+        `player-${store.game.currentPlayer.playerId}-turn.mp3`
+      );
     }
 
     // Place player icon in the squares
@@ -67,7 +83,7 @@ function init() {
         store.game.status.winner === null
           ? "It's a TIE!"
           : `${store.game.status.winner.name} WON!`;
-      view.openModal(message);
+      view.openModal(message, store.mute);
       return;
     }
 

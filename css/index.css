@@ -6,6 +6,7 @@
   --turquoise: #3cc4bf;
   --yellow: #f2b147;
   --light-gray: #d3d3d3;
+  --red: #e85b5b;
 }
 
 * {
@@ -80,7 +81,7 @@ button:hover {
   }
 
   .margin-top {
-    margin-top: 10vh;
+    margin-top: 15vh;
   }
 }
 
@@ -155,7 +156,6 @@ button:hover {
   z-index: 10;
   top: 60px;
   right: 0;
-  /* background-color: #203139; */
   background-color: #20313981;
   border-radius: 10px;
   backdrop-filter: blur(5px);
@@ -201,9 +201,50 @@ button:hover {
   font-size: 3rem;
 }
 
+@keyframes shake-animation {
+  0% {
+    transform: translate(0, 0);
+  }
+  10% {
+    transform: translate(-3px, -3px);
+  }
+  20% {
+    transform: translate(3px, 3px);
+  }
+  30% {
+    transform: translate(-3px, 3px);
+  }
+  40% {
+    transform: translate(3px, -3px);
+  }
+  50% {
+    transform: translate(-3px, -3px);
+    background-color: var(--red);
+  }
+  60% {
+    transform: translate(3px, 3px);
+  }
+  70% {
+    transform: translate(-3px, 3px);
+  }
+  80% {
+    transform: translate(3px, -3px);
+  }
+  90% {
+    transform: translate(-3px, 3px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
 .square:hover {
   cursor: pointer;
   opacity: 90%;
+}
+
+.square.not-allowed {
+  animation: 0.5s ease-in-out shake-animation;
 }
 
 .score {
@@ -228,20 +269,18 @@ button:hover {
   background-color: purple;
 }
 
-/* Footer styles */
-
-footer {
-  color: white;
-  margin-top: 50px;
+main {
+  position: relative;
 }
 
-footer p {
-  margin-top: 10px;
-  text-align: center;
-}
-
-footer a {
-  color: var(--yellow);
+.audio-control {
+  position: absolute;
+  bottom: -60px;
+  padding: 1em;
+  background-color: var(--gray);
+  border-radius: 50%;
+  color: var(--light-gray);
+  cursor: pointer;
 }
 
 /* Modal styles - opens when game finishes  */

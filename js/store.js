@@ -1,4 +1,8 @@
-const initialState = { moves: [], history: { currentGames: [], allGames: [] } };
+const initialState = {
+  moves: [],
+  history: { currentGames: [], allGames: [] },
+  mute: false,
+};
 
 export default class Store {
   constructor(storageKey, players) {
@@ -66,6 +70,12 @@ export default class Store {
     };
   }
 
+  get mute() {
+    const stateClone = structuredClone(this.#getState());
+
+    return stateClone.mute;
+  }
+
   playerMove(squareId) {
     const stateClone = structuredClone(this.#getState());
 
@@ -100,6 +110,13 @@ export default class Store {
     stateClone.history.allGames.push(...stateClone.history.currentGames);
 
     stateClone.history.currentGames = [];
+
+    this.#saveState(stateClone);
+  }
+
+  toggleAudio() {
+    const stateClone = structuredClone(this.#getState());
+    stateClone.mute = !stateClone.mute;
 
     this.#saveState(stateClone);
   }

@@ -15,6 +15,9 @@ export default class View {
     this.$.p1WinsText = this.#qs("[data-id=p1-wins]");
     this.$.tiesText = this.#qs("[data-id=ties]");
     this.$.p2WinsText = this.#qs("[data-id=p2-wins]");
+    this.$.turnAudio = this.#qs("[data-id=turn-audio]");
+    this.$.audioControl = this.#qs("[data-id=audio-control]");
+    this.$.audioControlIcon = this.#qs("[data-id=audio-control-icon]");
 
     this.$$.squares = this.#qsAll("[data-id=square]");
 
@@ -41,11 +44,38 @@ export default class View {
     });
   }
 
+  bindGameAudioControl(handler) {
+    this.$.audioControl.addEventListener("click", handler);
+  }
+
   //   DOM Helper Methods
   updateScoreBoard(stats) {
     this.$.p1WinsText.innerText = `${stats.playersWithStats[0].wins} Wins`;
     this.$.tiesText.innerText = stats.ties;
     this.$.p2WinsText.innerText = `${stats.playersWithStats[1].wins} Wins`;
+  }
+
+  playAudioOnce(audioFileNameWithExt) {
+    this.$.turnAudio.src = `../assets/audio/${audioFileNameWithExt}`;
+    this.$.turnAudio.play();
+  }
+
+  toggleAudioIcon(mute) {
+    if (mute) {
+      this.$.audioControlIcon.classList.remove("fa-volume-high");
+      this.$.audioControlIcon.classList.add("fa-volume-xmark");
+    } else {
+      this.$.audioControlIcon.classList.remove("fa-volume-xmark");
+      this.$.audioControlIcon.classList.add("fa-volume-high");
+    }
+  }
+
+  toggleNotAllowedClass(square) {
+    square.classList.add("not-allowed");
+
+    setTimeout(() => {
+      square.classList.remove("not-allowed");
+    }, 500);
   }
 
   #menuToggle() {
@@ -56,7 +86,10 @@ export default class View {
     menuIcon.classList.toggle("active-state");
   }
 
-  openModal(message) {
+  openModal(message, mute) {
+    if (!mute) {
+      this.playAudioOnce(`game-complete.mp3`);
+    }
     this.$.modal.classList.remove("hidden");
     this.$.modalText.innerText = message;
   }
