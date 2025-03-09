@@ -88,7 +88,11 @@ export default class View {
 
   openModal(message, mute) {
     if (!mute) {
-      this.playAudioOnce(`game-complete.mp3`);
+      if (message === "It's a TIE!") {
+        this.playAudioOnce(`game-tie.wav`);
+      } else {
+        this.playAudioOnce(`game-winner.wav`);
+      }
     }
     this.$.modal.classList.remove("hidden");
     this.$.modalText.innerText = message;
