@@ -40,7 +40,7 @@ A simple Tic Tac Toe web application built using HTML, CSS, and JavaScript follo
 ## Project Structure
 
 ```
-📂 tic-tac-toe-mvc/
+📂 tic-tac-toe-vanilla-js/
 ├── 📁 assets/
     ├── audio/              # Contains audio files
     ├── img/                # Contains image files
