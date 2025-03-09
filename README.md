@@ -78,6 +78,6 @@ A simple Tic Tac Toe web application built using HTML, CSS, and JavaScript follo
 
 ### 🌟 Show Your Support
 
-If you like this game, consider giving it a ⭐ on [GitHub](git@github.com:MdZaferEqbal/tic-tac-toe-vanilla-js.git)!
+If you like this game, consider giving it a ⭐ on [GitHub](https://github.com/MdZaferEqbal/tic-tac-toe-vanilla-js)!
 
 Enjoy the game! 🎮
